@@ -1,4 +1,4 @@
-package com.example.drunkquiz.ui;
+package com.example.blauoderschlau.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,8 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.drunkquiz.R;
-import com.example.drunkquiz.model.Game;
+import com.example.blauoderschlau.R;
+import com.example.blauoderschlau.model.Game;
 
 import java.util.ArrayList;
 import java.util.List;

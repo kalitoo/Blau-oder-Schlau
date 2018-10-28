@@ -1,4 +1,4 @@
-package com.example.drunkquiz;
+package com.example.blauoderschlau;
 
 import org.junit.Test;
 

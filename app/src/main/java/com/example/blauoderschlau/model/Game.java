@@ -1,4 +1,4 @@
-package com.example.drunkquiz.model;
+package com.example.blauoderschlau.model;
 
 public class Game {
 

@@ -1,4 +1,4 @@
-package com.example.drunkquiz;
+package com.example.blauoderschlau;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
