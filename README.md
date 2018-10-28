@@ -1,1 +1,1 @@
-# This is DrunkQuiz
+# This is Blau oder Schlau
