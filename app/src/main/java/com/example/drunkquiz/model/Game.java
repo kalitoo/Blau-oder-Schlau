@@ -1,4 +1,4 @@
-package com.example.jojod.drunkquiz.model;
+package com.example.drunkquiz.model;
 
 public class Game {
 

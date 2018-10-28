@@ -1,4 +1,4 @@
-package com.example.jojod.drunkquiz;
+package com.example.drunkquiz;
 
 import org.junit.Test;
 

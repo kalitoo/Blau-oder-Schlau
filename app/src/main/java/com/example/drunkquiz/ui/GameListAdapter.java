@@ -1,4 +1,4 @@
-package com.example.jojod.drunkquiz.ui;
+package com.example.drunkquiz.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.jojod.drunkquiz.R;
-import com.example.jojod.drunkquiz.model.Game;
+import com.example.drunkquiz.R;
+import com.example.drunkquiz.model.Game;
 
 
 import java.util.List;

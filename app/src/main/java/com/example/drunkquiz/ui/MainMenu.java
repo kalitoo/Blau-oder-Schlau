@@ -1,4 +1,4 @@
-package com.example.jojod.drunkquiz.ui;
+package com.example.drunkquiz.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,8 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.jojod.drunkquiz.R;
-import com.example.jojod.drunkquiz.model.Game;
+import com.example.drunkquiz.R;
+import com.example.drunkquiz.model.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_hauptmenue);
         ButterKnife.bind(this);
 
-        startButton.setText("Spiel starten");
+        startButton.setText("Spiel starten!");
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
