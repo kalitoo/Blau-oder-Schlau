@@ -2,7 +2,7 @@ package com.example.jojod.drunkquiz;
 
 import android.app.Application;
 
-public class DrunkQuiz extends Application {
+public class BlauOderSchlau extends Application {
 
 
 
