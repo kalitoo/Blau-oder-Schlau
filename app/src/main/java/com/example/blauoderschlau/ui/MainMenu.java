@@ -13,15 +13,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.blauoderschlau.R;
+import com.example.blauoderschlau.contracts.MainMenuContract;
+import com.example.blauoderschlau.logic.MainMenuPresenter;
+import com.example.blauoderschlau.logic.QuizPresenter;
 import com.example.blauoderschlau.model.Game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity implements MainMenuContract.View {
 
 
     @BindView(R.id.startButton)
@@ -31,7 +35,9 @@ public class MainMenu extends AppCompatActivity {
     @BindView(R.id.textView1)
     TextView textView1;
 
-    List gameHistory;
+    List<Game> gameHistory = new ArrayList();
+
+    MainMenuContract.Presenter presenter = new MainMenuPresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +49,7 @@ public class MainMenu extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainMenu.this, QuizActivity.class);
-                startActivity(intent);
+                presenter.startButtonClicked();
             }
         });
 
@@ -53,14 +58,10 @@ public class MainMenu extends AppCompatActivity {
 
         textView1.setText("Willkommen bei Blau oder Schlau!");
 
-        this.gameHistory = new ArrayList<>(50);
-        for (int i = 0; i <= 50; i++)
-        {
-            this.gameHistory.add(new Game(i,"11.12.13"));
-        }
+        presenter.init();
+
         ListAdapter gameListAdapter = new GameListAdapter(this, this.gameHistory);
         scoreHistory.setAdapter(gameListAdapter);
-
 
         //Todo: ADAPTER , either with normal List which was parsed via JSON or with DatenBasen und cursor
     }
@@ -85,5 +86,23 @@ public class MainMenu extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showGameHistory(List<Game> games) {
+        for(Game game : games){
+            gameHistory.add(game);
+        }
+    }
+
+    @Override
+    public void enableStartGameButton(boolean enable) {
+
+    }
+
+    @Override
+    public void startQuiz() {
+        Intent intent = new Intent(MainMenu.this, QuizActivity.class);
+        startActivity(intent);
     }
 }

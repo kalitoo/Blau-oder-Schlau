@@ -6,11 +6,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.blauoderschlau.R;
+import com.example.blauoderschlau.contracts.QuizContract;
+import com.example.blauoderschlau.model.Question;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements QuizContract.View {
 
     @BindView(R.id.button)
     Button buttonA;
@@ -33,6 +35,18 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void markAnswerAsRight(int pos) {
 
+    }
 
+    @Override
+    public void markAnswerAsWrong(int pos) {
+
+    }
+
+    @Override
+    public void showQuestion(Question q) {
+
+    }
 }
