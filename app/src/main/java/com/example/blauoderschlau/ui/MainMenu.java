@@ -37,13 +37,15 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
 
     List<Game> gameHistory = new ArrayList();
 
-    MainMenuContract.Presenter presenter = new MainMenuPresenter(this);
+    MainMenuContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hauptmenue);
         ButterKnife.bind(this);
+
+        presenter = new MainMenuPresenter(this);
 
         startButton.setText("Spiel starten!");
         startButton.setOnClickListener(new View.OnClickListener() {
