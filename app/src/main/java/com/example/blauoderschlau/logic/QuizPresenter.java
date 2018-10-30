@@ -1,5 +1,7 @@
 package com.example.blauoderschlau.logic;
 
+import android.os.Handler;
+
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.model.FakeDataProvider;
@@ -29,14 +31,23 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void answerClicked(int pos) {
+        view.markAnswerAsWrong(0);
         currentQuestionIndex++;
-        if(currentQuestionIndex < questionBundle.size()){
-            view.showQuestion(questionBundle.get(currentQuestionIndex));
+        // this is just a googled solution to implement time delay
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.resetAllMarkings();
+                if(currentQuestionIndex < questionBundle.size()){
+                    view.showQuestion(questionBundle.get(currentQuestionIndex));
 
-        }
-        else {
-            view.lastQuestionAnswered();
-        }
+                }
+                else {
+                    view.lastQuestionAnswered();
+                }
+            }
+        }, 1000);
     }
 
     @Override

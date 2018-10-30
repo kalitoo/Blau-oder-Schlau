@@ -1,6 +1,7 @@
 package com.example.blauoderschlau.ui;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,7 +61,7 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     }
 
     @Override
-    public void markAnswerAsWrong(int pos) {
+    public void markAnswerAsWrong(final int pos) {
         switch(pos) {
             case 0:
                 buttonA.setBackgroundColor(Color.RED);
@@ -72,6 +73,14 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
             default:
                 break;
         }
+    }
+
+    @Override
+    public void resetAllMarkings() {
+        buttonA.setBackgroundResource(android.R.drawable.btn_default);
+        buttonB.setBackgroundResource(android.R.drawable.btn_default);
+        buttonC.setBackgroundResource(android.R.drawable.btn_default);
+        buttonD.setBackgroundResource(android.R.drawable.btn_default);
     }
 
     @Override
@@ -87,4 +96,5 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     public void lastQuestionAnswered() {
         // switch to score activity
     }
+
 }

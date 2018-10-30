@@ -8,6 +8,7 @@ public interface QuizContract {
         void markAnswerAsWrong(int pos);
         void showQuestion(Question q);
         void lastQuestionAnswered();
+        void resetAllMarkings();
     }
     interface Presenter {
         void answerClicked(int pos);
