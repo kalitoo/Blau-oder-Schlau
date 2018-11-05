@@ -37,15 +37,15 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
 
     List<Game> gameHistory = new ArrayList();
 
-    MainMenuContract.Presenter presenter = new MainMenuPresenter(this);
+    MainMenuContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hauptmenue);
         ButterKnife.bind(this);
-        presenter.init();
 
+        presenter = new MainMenuPresenter(this);
 
         startButton.setText("Spiel starten!");
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
 
         textView1.setText("Willkommen bei Blau oder Schlau!");
 
-
+        presenter.init();
 
         ListAdapter gameListAdapter = new GameListAdapter(this, this.gameHistory);
         scoreHistory.setAdapter(gameListAdapter);
@@ -91,18 +91,15 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
     }
 
     @Override
-    public void showGameHistory(List<Game> games)
-    {
-        for(Game game : games)
-        {
+    public void showGameHistory(List<Game> games) {
+        for(Game game : games){
             gameHistory.add(game);
         }
     }
 
     @Override
-    public void enableStartGameButton(boolean enable)
-    {
-        startButton.setEnabled(enable);
+    public void enableStartGameButton(boolean enable) {
+
     }
 
     @Override
