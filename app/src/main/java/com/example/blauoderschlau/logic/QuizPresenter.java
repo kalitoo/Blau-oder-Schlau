@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
-import com.example.blauoderschlau.model.Answer;
 import com.example.blauoderschlau.model.FakeDataProvider;
+import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
 import java.util.Arrays;
@@ -23,7 +23,8 @@ public class QuizPresenter implements QuizContract.Presenter {
     // TODO save this index when app is paused
     private int currentQuestionIndex = 0;
     // key: A,B,C,D as displayed in view, value: corresponding index in answer
-    private HashMap<QuizContract.EAnswerOption, Integer> answerMapping;
+    private HashMap<QuizContract.EAnswerOption, Integer> answerMapping = new HashMap<>();
+    private HashMap<QuestionUnit, QuestionResult> timeToAnswerMapping = new HashMap<>();
 
     private long questionStartTimeMillis;
     private boolean answerClicked;
@@ -32,7 +33,6 @@ public class QuizPresenter implements QuizContract.Presenter {
         this.view = view;
         this.model = new FakeDataProvider();
         questionUnitBundle = model.getQuestionBundle(0, 10);
-        answerMapping = new HashMap<>();
         regenerateRandomHashMap();
         if(questionUnitBundle.isEmpty()) {
             view.showEntireQuestion(null);
@@ -47,7 +47,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         // avoid double click effects
         if(answerClicked) return;
         answerClicked = true;
-        Log.d("res", "Time to answer: " + getMillisToAnswer() + "ms");
+        long msToAnswerSelected = getMillisToAnswer();
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         QuizContract.EAnswerOption correctPos = null;
         for(QuizContract.EAnswerOption ao : QuizContract.EAnswerOption.values()){
@@ -55,10 +55,20 @@ public class QuizPresenter implements QuizContract.Presenter {
                 correctPos = ao;
             }
         }
+
+        view.markAnswerAsRight(correctPos);
+        QuestionResult questionResult = new QuestionResult();
         if(pos != correctPos) {
+            // wrong answered
+            questionResult.correctAnswerSelected = false;
             view.markAnswerAsWrong(pos);
         }
-        view.markAnswerAsRight(correctPos);
+        else {
+            // correct answered
+            questionResult.correctAnswerSelected = true;
+        }
+        questionResult.msToAnswerSelected = getMillisToAnswer();
+        timeToAnswerMapping.put(questionUnitBundle.get(currentQuestionIndex), questionResult);
 
         currentQuestionIndex++;
         // this is just a googled solution to implement time delay
@@ -71,6 +81,18 @@ public class QuizPresenter implements QuizContract.Presenter {
                     showQuestion();
                 }
                 else {
+                    long avTTA = 0;
+                    int cnt = 0;
+                    int wrongAnswers = 0;
+                    for(QuestionResult qr : timeToAnswerMapping.values()){
+                        avTTA += qr.msToAnswerSelected;
+                        wrongAnswers += (qr.correctAnswerSelected ? 0 : 1);
+                        cnt++;
+                    }
+                    avTTA /= (cnt == 0 ? 1 : cnt);
+                    view.showQuestionString("average time till answer: " + avTTA
+                            +"\n# wrong answers: " + wrongAnswers + " (" +
+                            (timeToAnswerMapping.size()) + "total)");
                     view.lastQuestionAnswered();
                 }
             }
