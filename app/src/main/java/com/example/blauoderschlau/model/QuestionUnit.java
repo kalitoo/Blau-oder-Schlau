@@ -9,16 +9,16 @@ public class QuestionUnit {
     private Answer[] answers;
     private Answer correctAnswer;
 
-    public QuestionUnit(final String q, final Answer[] answers){
+    public QuestionUnit(final String q, final Answer[] answers) {
         this.q = q;
         this.answers = answers;
         assignCorrectAnswer();
-        if(!isValidQuestion()){
+        if (!isValidQuestion()) {
             Log.w("invalidquestion", "You just created an invalid question!");
         }
     }
 
-    public String getQ(){
+    public String getQ() {
         return q;
     }
 
@@ -26,21 +26,21 @@ public class QuestionUnit {
         this.q = q;
     }
 
-    public Answer[] getAnswers(){
+    public Answer[] getAnswers() {
         return answers;
     }
 
-    public Answer getCorrectAnswer(){
-        if(correctAnswer == null){
+    public Answer getCorrectAnswer() {
+        if (correctAnswer == null) {
             isValidQuestion();
             assignCorrectAnswer();
         }
         return correctAnswer;
     }
 
-    private void assignCorrectAnswer(){
-        for(Answer answer : answers) {
-            if(answer.isCorrect()){
+    private void assignCorrectAnswer() {
+        for (Answer answer : answers) {
+            if (answer.isCorrect()) {
                 correctAnswer = answer;
             }
         }
@@ -53,19 +53,18 @@ public class QuestionUnit {
     public boolean isValidQuestion() {
         int i = 0;
         int e = 0;
-        for(Answer answer : answers) {
-            if(answer.isCorrect()){
+        for (Answer answer : answers) {
+            if (answer.isCorrect()) {
                 i++;
             }
-            if(answer.getText().isEmpty()){
+            if (answer.getText().isEmpty()) {
                 e++;
             }
         }
 
-        if(!q.isEmpty() && i == 1 && e == 0){
+        if (!q.isEmpty() && i == 1 && e == 0) {
             return true;
-        }
-        else{
+        } else {
             Log.w("invalidquestion", "Invalid question: There are " + i + " correct answer" +
                     "options" + "and " + e + " empty answer options");
             return false;

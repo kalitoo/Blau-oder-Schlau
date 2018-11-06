@@ -29,15 +29,14 @@ public class QuizPresenter implements QuizContract.Presenter {
     private long questionStartTimeMillis;
     private boolean answerClicked;
 
-    public QuizPresenter(QuizContract.View view){
+    public QuizPresenter(QuizContract.View view) {
         this.view = view;
         this.model = new FakeDataProvider();
         questionUnitBundle = model.getQuestionBundle(0, 10);
         regenerateRandomHashMap();
-        if(questionUnitBundle.isEmpty()) {
+        if (questionUnitBundle.isEmpty()) {
             view.showEntireQuestion(null);
-        }
-        else {
+        } else {
             showQuestion();
         }
     }
@@ -45,7 +44,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     @Override
     public void answerClicked(QuizContract.EAnswerOption pos) {
         // avoid double click effects
-        if(answerClicked) return;
+        if (answerClicked) return;
         answerClicked = true;
 
         QuestionResult questionResult = new QuestionResult();
@@ -53,19 +52,18 @@ public class QuizPresenter implements QuizContract.Presenter {
 
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         QuizContract.EAnswerOption correctPos = null;
-        for(QuizContract.EAnswerOption ao : QuizContract.EAnswerOption.values()){
-            if(currentQuestionUnit.getAnswers()[answerMapping.get(ao)].isCorrect()){
+        for (QuizContract.EAnswerOption ao : QuizContract.EAnswerOption.values()) {
+            if (currentQuestionUnit.getAnswers()[answerMapping.get(ao)].isCorrect()) {
                 correctPos = ao;
             }
         }
 
         view.markAnswerAsRight(correctPos);
-        if(pos != correctPos) {
+        if (pos != correctPos) {
             // wrong answered
             questionResult.correctAnswerSelected = false;
             view.markAnswerAsWrong(pos);
-        }
-        else {
+        } else {
             // correct answered
             questionResult.correctAnswerSelected = true;
         }
@@ -79,10 +77,9 @@ public class QuizPresenter implements QuizContract.Presenter {
             @Override
             public void run() {
                 view.resetAllMarkings();
-                if(currentQuestionIndex < questionUnitBundle.size()){
+                if (currentQuestionIndex < questionUnitBundle.size()) {
                     showQuestion();
-                }
-                else {
+                } else {
                     printSomeStuff();
                     view.lastQuestionAnswered();
                 }
@@ -100,17 +97,17 @@ public class QuizPresenter implements QuizContract.Presenter {
                 Arrays.asList(QuizContract.EAnswerOption.values());
         Collections.shuffle(answerOptionsShuffled);
         Integer i = 0;
-        for(QuizContract.EAnswerOption answerOption : answerOptionsShuffled){
+        for (QuizContract.EAnswerOption answerOption : answerOptionsShuffled) {
             answerMapping.put(answerOption, i++);
         }
     }
 
-    private void showQuestion(){
+    private void showQuestion() {
         regenerateRandomHashMap();
         answerClicked = false;
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         view.showQuestionString(currentQuestionUnit.getQ());
-        for(QuizContract.EAnswerOption answerOption : answerMapping.keySet()) {
+        for (QuizContract.EAnswerOption answerOption : answerMapping.keySet()) {
             Integer pos = answerMapping.get(answerOption);
             view.showAnswer(currentQuestionUnit.getAnswers()[pos].getText(), answerOption);
             startTimeToAnswerTimer();
@@ -129,14 +126,14 @@ public class QuizPresenter implements QuizContract.Presenter {
         long avTTA = 0;
         int cnt = 0;
         int wrongAnswers = 0;
-        for(QuestionResult qr : timeToAnswerMapping.values()){
+        for (QuestionResult qr : timeToAnswerMapping.values()) {
             avTTA += qr.msToAnswerSelected;
             wrongAnswers += (qr.correctAnswerSelected ? 0 : 1);
             cnt++;
         }
         avTTA /= (cnt == 0 ? 1 : cnt);
         view.showQuestionString("average time till answer: " + avTTA
-                +"\n# wrong answers: " + wrongAnswers + " (" +
+                + "\n# wrong answers: " + wrongAnswers + " (" +
                 (timeToAnswerMapping.size()) + " total)");
     }
 }

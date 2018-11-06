@@ -1,7 +1,7 @@
 package com.example.blauoderschlau.model;
 
 public class Answer {
-    private  String answer;
+    private String answer;
     private boolean correct;
 
     public Answer(String answer, boolean correct) {
@@ -9,11 +9,11 @@ public class Answer {
         this.correct = correct;
     }
 
-    public boolean isCorrect(){
+    public boolean isCorrect() {
         return correct;
     }
 
-    public String getText(){
+    public String getText() {
         return answer;
     }
 }

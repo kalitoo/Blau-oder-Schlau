@@ -12,7 +12,7 @@ public class MainMenuPresenter implements MainMenuContract.Presenter {
     private MainMenuContract.View view;
     private DatabaseManagerContract.Model model;
 
-    public MainMenuPresenter(MainMenuContract.View view){
+    public MainMenuPresenter(MainMenuContract.View view) {
         this.view = view;
         model = new FakeDataProvider();
     }

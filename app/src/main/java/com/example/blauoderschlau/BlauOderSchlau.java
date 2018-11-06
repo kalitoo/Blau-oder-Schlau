@@ -5,10 +5,8 @@ import android.app.Application;
 public class BlauOderSchlau extends Application {
 
 
-
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
 
     }

@@ -12,7 +12,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
     private static List<Game> gameHistory = new ArrayList<>();
 
     static {
-        String q0 ="Was ist 1+1?";
+        String q0 = "Was ist 1+1?";
         Answer[] ao0 = new Answer[]{
                 new Answer("0", false),
                 new Answer("1", false),
@@ -61,8 +61,8 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
         questionUnits.add(questionUnit4);
         questionUnits.add(questionUnit5);
 
-        for(int i = 0; i < 50; i++){
-            gameHistory.add(new Game(i,"11.12.13"));
+        for (int i = 0; i < 50; i++) {
+            gameHistory.add(new Game(i, "11.12.13"));
         }
     }
 
@@ -85,8 +85,8 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
     @Override
     public List<QuestionUnit> getQuestionBundle(long seed, int bundleSize) {
         List<QuestionUnit> questionUnitBundle = new ArrayList<>();
-        for(int i = 0; i < bundleSize; i++) {
-            if (i >= questionUnits.size()){
+        for (int i = 0; i < bundleSize; i++) {
+            if (i >= questionUnits.size()) {
                 break;
             }
             questionUnitBundle.add(questionUnits.get(i));
