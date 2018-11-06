@@ -101,14 +101,6 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     }
 
     @Override
-    public void showAnswerOptions(Answer[] answers) {
-        buttonA.setText(answers[0].getText());
-        buttonB.setText(answers[1].getText());
-        buttonC.setText(answers[2].getText());
-        buttonD.setText(answers[3].getText());
-    }
-
-    @Override
     public void showAnswer(String a, QuizContract.EAnswerOption pos) {
         switch (pos){
             case A: buttonA.setText(a); break;
