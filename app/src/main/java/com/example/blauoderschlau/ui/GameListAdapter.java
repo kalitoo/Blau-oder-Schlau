@@ -15,19 +15,15 @@ import com.example.blauoderschlau.model.Game;
 import java.util.List;
 
 
+public class GameListAdapter extends ArrayAdapter<Game> {
 
-public class GameListAdapter extends ArrayAdapter<Game>
-{
-
-    public GameListAdapter(Context context, List<Game> objects)
-    {
+    public GameListAdapter(Context context, List<Game> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
     }
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = convertView;
         if (null == rowView) {
             LayoutInflater inflater = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));
@@ -38,9 +34,9 @@ public class GameListAdapter extends ArrayAdapter<Game>
             TextView gameScoreTextView = rowView.findViewById(R.id.game_score);
 
             GameViewHolder viewHolder = new GameViewHolder();
-            viewHolder.gameIconView= gameIconView;
-            viewHolder.gameDateView= gameDateTextView;
-            viewHolder.gameScoreView= gameScoreTextView;
+            viewHolder.gameIconView = gameIconView;
+            viewHolder.gameDateView = gameDateTextView;
+            viewHolder.gameScoreView = gameScoreTextView;
             rowView.setTag(viewHolder);
         }
         Game game = getItem(position);
@@ -51,12 +47,11 @@ public class GameListAdapter extends ArrayAdapter<Game>
         return rowView;
     }
 
-    static class GameViewHolder{
+    static class GameViewHolder {
         ImageView gameIconView;
         TextView gameDateView;
         TextView gameScoreView;
     }
-
 
 
 }
