@@ -1,6 +1,7 @@
 package com.example.blauoderschlau.logic;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
@@ -23,6 +24,9 @@ public class QuizPresenter implements QuizContract.Presenter {
     // key: A,B,C,D as displayed in view, value: corresponding index in answer
     private HashMap<QuizContract.EAnswerOption, Integer> answerMapping;
 
+    private long questionStartTimeMillis;
+    private boolean answerClicked;
+
     public QuizPresenter(QuizContract.View view){
         this.view = view;
         this.model = new FakeDataProvider();
@@ -39,6 +43,10 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void answerClicked(QuizContract.EAnswerOption pos) {
+        // avoid double click effects
+        if(answerClicked) return;
+        answerClicked = true;
+        Log.d("res", "Time to answer: " + getMillisToAnswer() + "ms");
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         if(currentQuestionUnit.getAnswers()[answerMapping.get(pos)] == currentQuestionUnit.getCorrectAnswer()){
             view.markAnswerAsRight(pos);
@@ -80,12 +88,21 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     private void showQuestion(){
         regenerateRandomHashMap();
+        answerClicked = false;
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         view.showQuestionString(currentQuestionUnit.getQ());
         for(QuizContract.EAnswerOption answerOption : answerMapping.keySet()) {
             Integer pos = answerMapping.get(answerOption);
             view.showAnswer(currentQuestionUnit.getAnswers()[pos].getText(), answerOption);
+            startTimeToAnswerTimer();
         }
+    }
 
+    private void startTimeToAnswerTimer() {
+        questionStartTimeMillis = System.currentTimeMillis();
+    }
+
+    private long getMillisToAnswer() {
+        return System.currentTimeMillis() - questionStartTimeMillis;
     }
 }
