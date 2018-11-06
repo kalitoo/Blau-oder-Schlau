@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface DatabaseManagerContract {
     interface Model {
+        /** loads specific game from history and return it */
         Game loadGameFromHistory(int pos); // TODO choose better identifier than 'int pos'
-
+        /** loads all games from history and returns them */
         List<Game> loadAllGamesFromHistory();
-
-        QuestionUnit getQuestion(long seed);
-
-        List<QuestionUnit> getQuestionBundle(long seed, int bundleSize);
+        /** loads a random question using @param seed for randomization */
+        QuestionUnit loadQuestion(long seed);
+        /** loads a random bundle of different questions of size @param bundleSize */
+        List<QuestionUnit> loadQuestionBundle(long seed, int bundleSize);
     }
 }

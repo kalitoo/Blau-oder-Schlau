@@ -1,7 +1,6 @@
 package com.example.blauoderschlau.logic;
 
 import android.os.Handler;
-import android.util.Log;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
@@ -32,7 +31,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     public QuizPresenter(QuizContract.View view) {
         this.view = view;
         this.model = new FakeDataProvider();
-        questionUnitBundle = model.getQuestionBundle(0, 10);
+        questionUnitBundle = model.loadQuestionBundle(0, 10);
         regenerateRandomHashMap();
         if (questionUnitBundle.isEmpty()) {
             view.showEntireQuestion(null);

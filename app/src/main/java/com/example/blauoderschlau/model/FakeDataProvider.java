@@ -77,13 +77,13 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
     }
 
     @Override
-    public QuestionUnit getQuestion(long seed) {
+    public QuestionUnit loadQuestion(long seed) {
         int indexOfRandQuestion = new Random().nextInt(questionUnits.size());
         return questionUnits.get(indexOfRandQuestion);
     }
 
     @Override
-    public List<QuestionUnit> getQuestionBundle(long seed, int bundleSize) {
+    public List<QuestionUnit> loadQuestionBundle(long seed, int bundleSize) {
         List<QuestionUnit> questionUnitBundle = new ArrayList<>();
         for (int i = 0; i < bundleSize; i++) {
             if (i >= questionUnits.size()) {
