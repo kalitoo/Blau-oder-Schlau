@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
+import com.example.blauoderschlau.model.Answer;
 import com.example.blauoderschlau.model.FakeDataProvider;
 import com.example.blauoderschlau.model.QuestionUnit;
 
@@ -48,12 +49,17 @@ public class QuizPresenter implements QuizContract.Presenter {
         answerClicked = true;
         Log.d("res", "Time to answer: " + getMillisToAnswer() + "ms");
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
-        if(currentQuestionUnit.getAnswers()[answerMapping.get(pos)] == currentQuestionUnit.getCorrectAnswer()){
-            view.markAnswerAsRight(pos);
+        QuizContract.EAnswerOption correctPos = null;
+        for(QuizContract.EAnswerOption ao : QuizContract.EAnswerOption.values()){
+            if(currentQuestionUnit.getAnswers()[answerMapping.get(ao)].isCorrect()){
+                correctPos = ao;
+            }
         }
-        else{
+        if(pos != correctPos) {
             view.markAnswerAsWrong(pos);
         }
+        view.markAnswerAsRight(correctPos);
+
         currentQuestionIndex++;
         // this is just a googled solution to implement time delay
         final Handler handler = new Handler();

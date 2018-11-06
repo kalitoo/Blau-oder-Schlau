@@ -46,6 +46,24 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
                 presenter.answerClicked(QuizContract.EAnswerOption.A);
             }
         });
+        buttonB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.answerClicked(QuizContract.EAnswerOption.B);
+            }
+        });
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.answerClicked(QuizContract.EAnswerOption.C);
+            }
+        });
+        buttonD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.answerClicked(QuizContract.EAnswerOption.D);
+            }
+        });
     }
 
 
@@ -55,7 +73,8 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
         switch(pos){
             case A: buttonA.setBackgroundColor(Color.GREEN); break;
             case B: buttonB.setBackgroundColor(Color.GREEN); break;
-            //..
+            case C: buttonC.setBackgroundColor(Color.GREEN); break;
+            case D: buttonD.setBackgroundColor(Color.GREEN); break;
             default: break;
         }
     }
@@ -63,15 +82,11 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     @Override
     public void markAnswerAsWrong(QuizContract.EAnswerOption pos) {
         switch(pos) {
-            case A:
-                buttonA.setBackgroundColor(Color.RED);
-                break;
-            case B:
-                buttonB.setBackgroundColor(Color.RED);
-                break;
-            //..
-            default:
-                break;
+            case A: buttonA.setBackgroundColor(Color.RED); break;
+            case B: buttonB.setBackgroundColor(Color.RED); break;
+            case C: buttonC.setBackgroundColor(Color.RED); break;
+            case D: buttonD.setBackgroundColor(Color.RED); break;
+            default: break;
         }
     }
 
