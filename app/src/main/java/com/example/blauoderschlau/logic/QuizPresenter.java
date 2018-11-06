@@ -47,7 +47,10 @@ public class QuizPresenter implements QuizContract.Presenter {
         // avoid double click effects
         if(answerClicked) return;
         answerClicked = true;
-        long msToAnswerSelected = getMillisToAnswer();
+
+        QuestionResult questionResult = new QuestionResult();
+        questionResult.msToAnswerSelected = getMillisToAnswer();
+
         QuestionUnit currentQuestionUnit = questionUnitBundle.get(currentQuestionIndex);
         QuizContract.EAnswerOption correctPos = null;
         for(QuizContract.EAnswerOption ao : QuizContract.EAnswerOption.values()){
@@ -57,7 +60,6 @@ public class QuizPresenter implements QuizContract.Presenter {
         }
 
         view.markAnswerAsRight(correctPos);
-        QuestionResult questionResult = new QuestionResult();
         if(pos != correctPos) {
             // wrong answered
             questionResult.correctAnswerSelected = false;
@@ -67,7 +69,7 @@ public class QuizPresenter implements QuizContract.Presenter {
             // correct answered
             questionResult.correctAnswerSelected = true;
         }
-        questionResult.msToAnswerSelected = getMillisToAnswer();
+
         timeToAnswerMapping.put(questionUnitBundle.get(currentQuestionIndex), questionResult);
 
         currentQuestionIndex++;
@@ -81,18 +83,7 @@ public class QuizPresenter implements QuizContract.Presenter {
                     showQuestion();
                 }
                 else {
-                    long avTTA = 0;
-                    int cnt = 0;
-                    int wrongAnswers = 0;
-                    for(QuestionResult qr : timeToAnswerMapping.values()){
-                        avTTA += qr.msToAnswerSelected;
-                        wrongAnswers += (qr.correctAnswerSelected ? 0 : 1);
-                        cnt++;
-                    }
-                    avTTA /= (cnt == 0 ? 1 : cnt);
-                    view.showQuestionString("average time till answer: " + avTTA
-                            +"\n# wrong answers: " + wrongAnswers + " (" +
-                            (timeToAnswerMapping.size()) + "total)");
+                    printSomeStuff();
                     view.lastQuestionAnswered();
                 }
             }
@@ -132,5 +123,20 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     private long getMillisToAnswer() {
         return System.currentTimeMillis() - questionStartTimeMillis;
+    }
+
+    private void printSomeStuff() {
+        long avTTA = 0;
+        int cnt = 0;
+        int wrongAnswers = 0;
+        for(QuestionResult qr : timeToAnswerMapping.values()){
+            avTTA += qr.msToAnswerSelected;
+            wrongAnswers += (qr.correctAnswerSelected ? 0 : 1);
+            cnt++;
+        }
+        avTTA /= (cnt == 0 ? 1 : cnt);
+        view.showQuestionString("average time till answer: " + avTTA
+                +"\n# wrong answers: " + wrongAnswers + " (" +
+                (timeToAnswerMapping.size()) + " total)");
     }
 }

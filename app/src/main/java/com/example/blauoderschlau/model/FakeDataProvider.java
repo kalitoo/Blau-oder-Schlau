@@ -47,11 +47,19 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("oben links", false),
                 new Answer("unten rechts", false)};
         QuestionUnit questionUnit4 = new QuestionUnit(q4, ao4);
+        String q5 = "Wer ist der allergeilste?";
+        Answer[] ao5 = new Answer[]{
+                new Answer("Hower", true),
+                new Answer("Hoffmann", false),
+                new Answer("Herzog", false),
+                new Answer("Jost", false)};
+        QuestionUnit questionUnit5 = new QuestionUnit(q5, ao5);
         questionUnits.add(questionUnit0);
         questionUnits.add(questionUnit1);
         questionUnits.add(questionUnit2);
         questionUnits.add(questionUnit3);
         questionUnits.add(questionUnit4);
+        questionUnits.add(questionUnit5);
 
         for(int i = 0; i < 50; i++){
             gameHistory.add(new Game(i,"11.12.13"));
