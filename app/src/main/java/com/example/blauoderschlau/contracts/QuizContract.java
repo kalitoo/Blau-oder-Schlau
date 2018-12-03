@@ -1,6 +1,7 @@
 package com.example.blauoderschlau.contracts;
 
 import com.example.blauoderschlau.model.Answer;
+import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionUnit;
 
 public interface QuizContract {
@@ -16,7 +17,7 @@ public interface QuizContract {
         /** show answer with text @param a at position @param pos */
         void showAnswer(String a, EAnswerOption pos);
         /** called when last question has been answered */
-        void lastQuestionAnswered();
+        void lastQuestionAnswered(Game game);
         /** reset button look to default*/
         void resetAllMarkings();
     }

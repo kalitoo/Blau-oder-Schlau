@@ -1,6 +1,8 @@
 package com.example.blauoderschlau.model;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
 
     int score;
     String date;

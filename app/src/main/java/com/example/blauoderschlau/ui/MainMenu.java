@@ -15,11 +15,9 @@ import android.widget.TextView;
 import com.example.blauoderschlau.R;
 import com.example.blauoderschlau.contracts.MainMenuContract;
 import com.example.blauoderschlau.logic.MainMenuPresenter;
-import com.example.blauoderschlau.logic.QuizPresenter;
 import com.example.blauoderschlau.model.Game;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,7 +40,7 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hauptmenue);
+        setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
 
         presenter = new MainMenuPresenter(this);

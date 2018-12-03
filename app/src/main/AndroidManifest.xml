@@ -3,7 +3,7 @@
     package="com.example.blauoderschlau">
 
     <application
-        android:name="com.example.blauoderschlau.BlauOderSchlau"
+        android:name=".BlauOderSchlau"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.blauoderschlau.ui.MainMenu"
+            android:name=".ui.MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.blauoderschlau.ui.QuizActivity"></activity>
+        <activity android:name=".ui.QuizActivity" />
+        <activity android:name=".ui.ScoreActivity" />
+        <activity android:name=".ui.streetActivity"></activity>
     </application>
 
 </manifest>
