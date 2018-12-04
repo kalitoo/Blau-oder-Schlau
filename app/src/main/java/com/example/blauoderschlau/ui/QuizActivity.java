@@ -14,7 +14,10 @@ import com.example.blauoderschlau.logic.QuizPresenter;
 import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -126,7 +129,8 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     public void lastQuestionAnswered(Collection<QuestionResult> questionResultCollection) {
         // switch to score activity
         Intent intent = new Intent(QuizActivity.this, ScoreActivity.class);
-        intent.putExtra("QuestionResultCollection", questionResultCollection);
+        ArrayList<QuestionResult> questionResultArrayList = new ArrayList<>(questionResultCollection);
+        intent.putParcelableArrayListExtra("QuestionResultList", questionResultArrayList);
         startActivity(intent);
     }
 
