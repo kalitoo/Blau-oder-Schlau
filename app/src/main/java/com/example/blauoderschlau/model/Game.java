@@ -1,20 +1,24 @@
 package com.example.blauoderschlau.model;
 
+import java.util.Date;
+
 public class Game {
 
-    int score;
-    String date;
+    // time stamp when game was finished
+    private Date date;
+    // the higher, the better (the less drunk)
+    private int score;
 
-    public Game(int score, String date) {
+    public Game(int score) {
         this.score = score;
-        this.date = date;
+        this.date = new Date();
     }
 
     public int getScore() {
         return score;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 }
