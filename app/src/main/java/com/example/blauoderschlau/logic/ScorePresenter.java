@@ -20,12 +20,18 @@ public class ScorePresenter implements ScoreContract.Presenter {
     }
 
     @Override
-    public void returnToHome() {
-        
+    public void buildAndSaveGame(List<QuestionResult> questionResultList){
+        Game gameJustFinished = makeGame(questionResultList);
+        model.saveGame(gameJustFinished);
+        view.showResults(gameJustFinished);
     }
 
     @Override
-    public Game buildAndSaveGame(List<QuestionResult> questionResultList) {
+    public void returnToHome() {
+        view.goToMainMenu();
+    }
+
+    private Game makeGame(List<QuestionResult> questionResultList) {
         long avTTA = 0;
         int cnt = 0;
         int wrongAnswers = 0;
@@ -36,11 +42,8 @@ public class ScorePresenter implements ScoreContract.Presenter {
         }
         avTTA /= (cnt == 0 ? 1 : cnt);
 
-        Game gameJustFinished = new Game(
+        return new Game(
                 calculatePerMillValue(avTTA, wrongAnswers, cnt - wrongAnswers));
-        // persist game
-        model.saveGame(gameJustFinished);
-        return gameJustFinished;
 
     }
 

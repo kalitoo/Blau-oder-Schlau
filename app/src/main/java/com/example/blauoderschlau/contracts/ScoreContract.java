@@ -9,13 +9,16 @@ public interface ScoreContract {
     interface View {
         /** shows quiz results */
         void showResults(Game game);
+
+        /** switches to main menu activity */
+        void goToMainMenu();
     }
 
     interface Presenter {
+        /** builds game from question result list and persists it */
+        void buildAndSaveGame(List<QuestionResult> questionResultList);
+
         /** called when returning to home screen*/
         void returnToHome();
-
-        /** builds game from question result list and persists it */
-        Game buildAndSaveGame(List<QuestionResult> questionResultList);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.blauoderschlau.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -44,9 +45,7 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
 
         List<QuestionResult> questionResultList =
                 getIntent().getParcelableArrayListExtra("QuestionResultList");
-        Game gameJustFinished = presenter.buildAndSaveGame(questionResultList);
-
-        showResults(gameJustFinished);
+        presenter.buildAndSaveGame(questionResultList);
     }
 
     @Override
@@ -54,5 +53,13 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
     {
         scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Double.toString(game.getPerMill())
                 + " Promille.");
+    }
+
+    @Override
+    public void goToMainMenu() {
+        Intent intent = new Intent(this, MainMenu.class);
+        // clear preceding activities
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
