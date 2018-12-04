@@ -6,6 +6,7 @@ import com.example.blauoderschlau.model.QuestionUnit;
 import java.util.List;
 
 public interface DatabaseManagerContract {
+    /** get instance of data source, database must be a singleton */
     interface Model {
         /** loads specific game from history and return it */
         Game loadGameFromHistory(int pos); // TODO choose better identifier than 'int pos'

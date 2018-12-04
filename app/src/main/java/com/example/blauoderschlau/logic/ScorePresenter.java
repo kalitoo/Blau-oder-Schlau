@@ -16,7 +16,7 @@ public class ScorePresenter implements ScoreContract.Presenter {
 
     public ScorePresenter(ScoreContract.View view){
         this.view = view;
-        this.model = new FakeDataProvider();
+        this.model = FakeDataProvider.getInstance();
     }
 
     @Override

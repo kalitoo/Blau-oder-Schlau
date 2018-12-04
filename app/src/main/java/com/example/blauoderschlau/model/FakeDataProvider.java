@@ -12,6 +12,8 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
     private static List<QuestionUnit> questionUnits = new ArrayList<>();
     private static List<Game> gameHistory = new ArrayList<>();
 
+    private static FakeDataProvider instance = new FakeDataProvider();
+
     static {
         String q0 = "Was ist 1+1?";
         Answer[] ao0 = new Answer[]{
@@ -65,6 +67,18 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
         for (int i = 0; i < 50; i++) {
             gameHistory.add(new Game(i));
         }
+    }
+
+    private FakeDataProvider(){
+
+    }
+
+
+    public static DatabaseManagerContract.Model getInstance() {
+        if(instance == null){
+            instance = new FakeDataProvider();
+        }
+        return instance;
     }
 
     @Override
