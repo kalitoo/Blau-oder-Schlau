@@ -14,7 +14,7 @@ public class MainMenuPresenter implements MainMenuContract.Presenter {
 
     public MainMenuPresenter(MainMenuContract.View view) {
         this.view = view;
-        model = FakeDataProvider.getInstance();
+        model = DatabaseManagerContract.dataSource;
     }
 
     @Override

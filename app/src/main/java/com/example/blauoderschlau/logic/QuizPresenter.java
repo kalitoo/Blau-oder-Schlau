@@ -31,7 +31,7 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     public QuizPresenter(QuizContract.View view) {
         this.view = view;
-        this.model = FakeDataProvider.getInstance();
+        this.model = DatabaseManagerContract.dataSource;
         questionUnitBundle = model.loadQuestionBundle(0, 10);
         regenerateRandomHashMap();
         if (questionUnitBundle.isEmpty()) {

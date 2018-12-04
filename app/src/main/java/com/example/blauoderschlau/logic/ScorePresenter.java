@@ -1,5 +1,7 @@
 package com.example.blauoderschlau.logic;
 
+import android.provider.ContactsContract;
+
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.contracts.ScoreContract;
@@ -16,7 +18,7 @@ public class ScorePresenter implements ScoreContract.Presenter {
 
     public ScorePresenter(ScoreContract.View view){
         this.view = view;
-        this.model = FakeDataProvider.getInstance();
+        this.model = DatabaseManagerContract.dataSource;
     }
 
     @Override
