@@ -3,6 +3,7 @@ package com.example.blauoderschlau.model;
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
         questionUnits.add(questionUnit5);
 
         for (int i = 0; i < 50; i++) {
-            gameHistory.add(new Game(i, "11.12.13"));
+            gameHistory.add(new Game(i));
         }
     }
 

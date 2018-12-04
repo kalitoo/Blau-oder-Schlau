@@ -11,7 +11,10 @@ import com.example.blauoderschlau.R;
 import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.logic.QuizPresenter;
 import com.example.blauoderschlau.model.Answer;
+import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
+
+import java.util.Collection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,7 +123,7 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     }
 
     @Override
-    public void lastQuestionAnswered() {
+    public void lastQuestionAnswered(Collection<QuestionResult> questionResultCollection) {
         // switch to score activity
     }
 

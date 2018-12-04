@@ -1,7 +1,10 @@
 package com.example.blauoderschlau.contracts;
 
 import com.example.blauoderschlau.model.Answer;
+import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
+
+import java.util.Collection;
 
 public interface QuizContract {
     interface View {
@@ -16,7 +19,7 @@ public interface QuizContract {
         /** show answer with text @param a at position @param pos */
         void showAnswer(String a, EAnswerOption pos);
         /** called when last question has been answered */
-        void lastQuestionAnswered();
+        void lastQuestionAnswered(Collection<QuestionResult> questionResultCollection);
         /** reset button look to default*/
         void resetAllMarkings();
     }

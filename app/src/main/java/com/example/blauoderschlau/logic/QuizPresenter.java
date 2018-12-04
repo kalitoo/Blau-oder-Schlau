@@ -80,7 +80,7 @@ public class QuizPresenter implements QuizContract.Presenter {
                     showQuestion();
                 } else {
                     printSomeStuff();
-                    view.lastQuestionAnswered();
+                    view.lastQuestionAnswered(timeToAnswerMapping.values());
                 }
             }
         }, 1000);
