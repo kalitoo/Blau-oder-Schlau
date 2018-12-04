@@ -1,5 +1,6 @@
 package com.example.blauoderschlau.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import com.example.blauoderschlau.R;
 import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.logic.QuizPresenter;
-import com.example.blauoderschlau.model.Answer;
 import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
@@ -125,6 +125,9 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     @Override
     public void lastQuestionAnswered(Collection<QuestionResult> questionResultCollection) {
         // switch to score activity
+        Intent intent = new Intent(QuizActivity.this, ScoreActivity.class);
+        intent.putExtra("QuestionResultCollection", questionResultCollection);
+        startActivity(intent);
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Handler;
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.model.FakeDataProvider;
+import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 

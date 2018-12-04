@@ -1,8 +1,9 @@
 package com.example.blauoderschlau.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Game {
+public class Game implements Serializable {
 
     // time stamp when game was finished
     private Date date;

@@ -1,6 +1,5 @@
 package com.example.blauoderschlau.contracts;
 
-import com.example.blauoderschlau.model.Answer;
 import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
