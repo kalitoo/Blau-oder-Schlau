@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/game_icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="score 1" />
+        tools:text="permill 1" />
 
     <TextView
         android:id="@+id/game_score"

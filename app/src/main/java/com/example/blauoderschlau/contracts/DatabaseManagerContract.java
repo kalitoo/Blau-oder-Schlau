@@ -15,5 +15,7 @@ public interface DatabaseManagerContract {
         QuestionUnit loadQuestion(long seed);
         /** loads a random bundle of different questions of size @param bundleSize */
         List<QuestionUnit> loadQuestionBundle(long seed, int bundleSize);
+        /** saves game in database*/
+        void saveGame(Game game);
     }
 }

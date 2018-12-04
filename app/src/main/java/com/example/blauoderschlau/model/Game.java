@@ -6,20 +6,20 @@ import java.util.Date;
 public class Game implements Serializable {
 
     // time stamp when game was finished
-    private Date date;
+    private Date datePlayed;
     // the higher, the better (the less drunk)
-    private int score;
+    private double perMill;
 
-    public Game(int score) {
-        this.score = score;
-        this.date = new Date();
+    public Game(double perMill) {
+        this.perMill = perMill;
+        this.datePlayed = new Date();
     }
 
-    public int getScore() {
-        return score;
+    public double getPerMill() {
+        return perMill;
     }
 
     public Date getDate() {
-        return date;
+        return datePlayed;
     }
 }

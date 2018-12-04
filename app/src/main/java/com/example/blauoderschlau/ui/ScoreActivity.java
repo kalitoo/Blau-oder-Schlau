@@ -12,6 +12,8 @@ import com.example.blauoderschlau.logic.ScorePresenter;
 import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionResult;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,7 +33,7 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
         setContentView(R.layout.activity_score);
         ButterKnife.bind(this);
 
-        presenter = new ScorePresenter();
+        presenter = new ScorePresenter(this);
 
         scoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +42,17 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
             }
         });
 
-        showResults((Game) getIntent().getSerializableExtra("Game"));
+        List<QuestionResult> questionResultList =
+                getIntent().getParcelableArrayListExtra("QuestionResultList");
+        Game gameJustFinished = presenter.buildAndSaveGame(questionResultList);
+
+        showResults(gameJustFinished);
     }
 
     @Override
     public void showResults(Game game)
     {
-        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Integer.toString(game.getScore())
+        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Double.toString(game.getPerMill())
                 + " Promille.");
     }
 }

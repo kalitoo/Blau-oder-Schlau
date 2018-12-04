@@ -94,4 +94,9 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
         }
         return questionUnitBundle;
     }
+
+    @Override
+    public void saveGame(Game game) {
+
+    }
 }
