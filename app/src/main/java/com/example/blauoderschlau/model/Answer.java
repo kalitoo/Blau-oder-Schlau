@@ -1,6 +1,7 @@
 package com.example.blauoderschlau.model;
 
 public class Answer {
+
     private String answer;
     private boolean correct;
 
@@ -16,4 +17,5 @@ public class Answer {
     public String getText() {
         return answer;
     }
+
 }

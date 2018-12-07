@@ -3,7 +3,6 @@ package com.example.blauoderschlau.model;
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 

@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".ui.QuizActivity" />
         <activity android:name=".ui.ScoreActivity" />
-        <activity android:name=".ui.streetActivity"></activity>
     </application>
 
 </manifest>

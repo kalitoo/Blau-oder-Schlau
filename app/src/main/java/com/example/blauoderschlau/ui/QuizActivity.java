@@ -15,9 +15,7 @@ import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

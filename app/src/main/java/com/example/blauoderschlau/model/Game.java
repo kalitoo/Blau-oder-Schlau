@@ -7,7 +7,7 @@ public class Game implements Serializable {
 
     // time stamp when game was finished
     private Date datePlayed;
-    // the higher, the better (the less drunk)
+    // resulting per mill value (the score)
     private double perMill;
 
     public Game(double perMill) {
