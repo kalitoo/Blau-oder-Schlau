@@ -1,11 +1,8 @@
 package com.example.blauoderschlau.logic;
 
-import android.provider.ContactsContract;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
-import com.example.blauoderschlau.contracts.QuizContract;
 import com.example.blauoderschlau.contracts.ScoreContract;
-import com.example.blauoderschlau.model.FakeDataProvider;
 import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionResult;
 
@@ -15,6 +12,10 @@ public class ScorePresenter implements ScoreContract.Presenter {
 
     private ScoreContract.View view;
     private DatabaseManagerContract.Model model;
+
+    private static final int AVG_MS_CONSIDERED_SOBER = 3000;
+    private static final int MAX_MS = 10000;
+    private static final double MAX_POSSIBLE_PER_MILL = 3.;
 
     public ScorePresenter(ScoreContract.View view){
         this.view = view;
@@ -36,20 +37,30 @@ public class ScorePresenter implements ScoreContract.Presenter {
     private Game makeGame(List<QuestionResult> questionResultList) {
         long avTTA = 0;
         int cnt = 0;
-        int wrongAnswers = 0;
         for (QuestionResult qr : questionResultList) {
-            avTTA += qr.msToAnswerSelected;
-            wrongAnswers += (qr.correctAnswerSelected ? 0 : 1);
+            avTTA += (qr.correctAnswerSelected ? qr.msToAnswerSelected : MAX_MS);
             cnt++;
         }
         avTTA /= (cnt == 0 ? 1 : cnt);
 
-        return new Game(
-                calculatePerMillValue(avTTA, wrongAnswers, cnt - wrongAnswers));
+        if(avTTA < AVG_MS_CONSIDERED_SOBER){
+            avTTA = AVG_MS_CONSIDERED_SOBER;
+        }
+
+        return new Game(calculatePerMillValue(avTTA));
 
     }
 
-    private double calculatePerMillValue(long avTTA, int wrongAnswers, int correctAnswers) {
-        return 0;
+    // TODO write test for this
+    private double calculatePerMillValue(long avTTA) {
+        /*
+         * y: per mill value, x: avTTA
+         * y = mx + b
+         * y(AVG_MS_CONSIDERED_SOBER) = 0
+         * y(MAX_MS) = MAX_POSSIBLE_PER_MILL
+         */
+        final double m = MAX_POSSIBLE_PER_MILL / (MAX_MS - AVG_MS_CONSIDERED_SOBER);
+        final double b = 0. - m * AVG_MS_CONSIDERED_SOBER;
+        return m * avTTA + b;
     }
 }

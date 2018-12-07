@@ -48,11 +48,15 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
         presenter.buildAndSaveGame(questionResultList);
     }
 
+    // TODO write test
     @Override
     public void showResults(Game game)
     {
-        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Double.toString(game.getPerMill())
-                + " Promille.");
+        final double perMill = game.getPerMill();
+        int preComma = (int) perMill;
+        int postComma = (int) ((perMill - preComma) * 10 + 0.5);
+        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Integer.toString(preComma)
+                + "." + postComma + " Promille.");
     }
 
     @Override
