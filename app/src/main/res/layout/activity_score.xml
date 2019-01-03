@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ScoreActivity">
+    tools:context=".ui.ScoreActivity"
+    android:background="@color/colorBackgroudPrimary"
+    >
 
     <Button
         android:id="@+id/scoreButton"
@@ -14,6 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="44dp"
         android:text="FERTIG!"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
@@ -22,10 +25,12 @@
     <TextView
         android:id="@+id/scoreTextView"
         android:layout_width="307dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/textarea"
+        android:gravity="center"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
