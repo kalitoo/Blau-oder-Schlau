@@ -45,7 +45,6 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
 
         presenter = new MainMenuPresenter(this);
 
-        startButton.setText("Spiel starten!");
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,17 +52,10 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
             }
         });
 
-        startButton.setBackgroundColor(Color.rgb(100,100,100));
-        startButton.setTag(R.id.startButton);
-
-        textView1.setText("Willkommen bei Blau oder Schlau!");
-
         presenter.init();
 
         ListAdapter gameListAdapter = new GameListAdapter(this, this.gameHistory);
         scoreHistory.setAdapter(gameListAdapter);
-
-        //Todo: ADAPTER , either with normal List which was parsed via JSON or with DatenBasen und cursor
     }
 
     @Override
