@@ -48,6 +48,7 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 presenter.startButtonClicked();
             }
         });

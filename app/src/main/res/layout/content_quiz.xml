@@ -75,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/quizTextView"/>
+        style="@style/quizTextViewStyle"/>
 
 
 

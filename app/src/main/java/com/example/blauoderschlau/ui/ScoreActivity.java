@@ -1,10 +1,12 @@
 package com.example.blauoderschlau.ui;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.blauoderschlau.R;
@@ -25,8 +27,14 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
     Button scoreButton;
     @BindView(R.id.scoreTextView)
     TextView scoreTextView;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     ScoreContract.Presenter presenter;
+
+    private int prograssBarStatus = 0;
+
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +62,33 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
     {
         final double perMill = game.getPerMill();
         int preComma = (int) perMill;
-        int postComma = (int) ((perMill - preComma) * 10 + 0.5);
-        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + Integer.toString(preComma)
+        int postComma = (int) ((perMill - preComma) * 100);
+        scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + preComma
                 + "." + postComma + " Promille.");
+
+        final double percentage = (100 * perMill)/3;
+
+         new Thread(new Runnable()
+         {
+             @Override
+             public void run()
+             {
+                 while ( prograssBarStatus < percentage)
+                 {
+                     prograssBarStatus++;
+                     android.os.SystemClock.sleep(20);
+                     handler.post(new Runnable()
+                     {
+                         @Override
+                         public void run()
+                         {
+                             progressBar.setProgress(prograssBarStatus);
+                         }
+                     });
+                 }
+             }
+         }).start();
+
     }
 
     @Override
