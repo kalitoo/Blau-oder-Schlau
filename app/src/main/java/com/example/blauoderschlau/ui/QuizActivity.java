@@ -1,7 +1,6 @@
 package com.example.blauoderschlau.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,11 +25,11 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
 
     @BindView(R.id.button)
     Button buttonA;
-    @BindView(R.id.button5)
+    @BindView(R.id.button1)
     Button buttonB;
-    @BindView(R.id.button6)
+    @BindView(R.id.button2)
     Button buttonC;
-    @BindView(R.id.button7)
+    @BindView(R.id.button3)
     Button buttonD;
     @BindView(R.id.questionView)
     TextView questionView;
@@ -75,10 +74,10 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     public void markAnswerAsRight(QuizContract.EAnswerOption pos) {
 
         switch(pos){
-            case A: buttonA.setBackgroundColor(Color.GREEN); break;
-            case B: buttonB.setBackgroundColor(Color.GREEN); break;
-            case C: buttonC.setBackgroundColor(Color.GREEN); break;
-            case D: buttonD.setBackgroundColor(Color.GREEN); break;
+            case A: buttonA.setBackgroundResource(R.drawable.button_right); break;
+            case B: buttonB.setBackgroundResource(R.drawable.button_right); break;
+            case C: buttonC.setBackgroundResource(R.drawable.button_right); break;
+            case D: buttonD.setBackgroundResource(R.drawable.button_right); break;
             default: break;
         }
     }
@@ -86,10 +85,10 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
     @Override
     public void markAnswerAsWrong(QuizContract.EAnswerOption pos) {
         switch(pos) {
-            case A: buttonA.setBackgroundColor(Color.RED); break;
-            case B: buttonB.setBackgroundColor(Color.RED); break;
-            case C: buttonC.setBackgroundColor(Color.RED); break;
-            case D: buttonD.setBackgroundColor(Color.RED); break;
+            case A: buttonA.setBackgroundResource(R.drawable.button_false); break;
+            case B: buttonB.setBackgroundResource(R.drawable.button_false); break;
+            case C: buttonC.setBackgroundResource(R.drawable.button_false); break;
+            case D: buttonD.setBackgroundResource(R.drawable.button_false); break;
             default: break;
         }
     }
@@ -117,10 +116,10 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
 
     @Override
     public void resetAllMarkings() {
-        buttonA.setBackgroundResource(android.R.drawable.btn_default);
-        buttonB.setBackgroundResource(android.R.drawable.btn_default);
-        buttonC.setBackgroundResource(android.R.drawable.btn_default);
-        buttonD.setBackgroundResource(android.R.drawable.btn_default);
+        buttonA.setBackgroundResource(R.drawable.button);
+        buttonB.setBackgroundResource(R.drawable.button);
+        buttonC.setBackgroundResource(R.drawable.button);
+        buttonD.setBackgroundResource(R.drawable.button);
     }
 
     @Override

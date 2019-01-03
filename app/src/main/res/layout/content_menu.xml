@@ -6,27 +6,30 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.MainMenu"
-    tools:showIn="@layout/activity_hauptmenue">
+    tools:showIn="@layout/activity_menu"
+    android:background="@color/colorBackgroudPrimary">
 
     <Button
         android:id="@+id/startButton"
-        android:layout_width="336dp"
+        android:layout_width="match_parent"
         android:layout_height="139dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button"
+        android:text="@string/start_button"
+        android:fontFamily="@font/standart_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
-        tools:text="sasasca" />
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <ListView
         android:id="@+id/scoreHistory"
         android:layout_width="match_parent"
-        android:layout_height="326dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="268dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +39,14 @@
     <TextView
         android:id="@+id/textView1"
         android:layout_width="225dp"
-        android:layout_height="54dp"
+        android:layout_height="84dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:background="@drawable/button"
+        android:fontFamily="@font/standart_font"
+        android:gravity="center"
+        android:text="@string/welcome_text"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
