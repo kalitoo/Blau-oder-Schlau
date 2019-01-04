@@ -13,7 +13,7 @@ public class ScorePresenter implements ScoreContract.Presenter {
     private ScoreContract.View view;
     private DatabaseManagerContract.Model model;
 
-    private static final int AVG_MS_CONSIDERED_SOBER = 3000;
+    private static final int AVG_MS_CONSIDERED_SOBER = 2500;
     private static final int MAX_MS = 10000;
     private static final double MAX_POSSIBLE_PER_MILL = 3.;
 
@@ -47,7 +47,11 @@ public class ScorePresenter implements ScoreContract.Presenter {
             avTTA = AVG_MS_CONSIDERED_SOBER;
         }
 
-        return new Game(calculatePerMillValue(avTTA));
+
+        Game returnGame = new Game();
+        returnGame.setDate();
+        returnGame.setPerMill(calculatePerMillValue(avTTA));
+        return returnGame;
 
     }
 

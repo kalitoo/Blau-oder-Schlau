@@ -44,14 +44,15 @@
         <item name="android:textSize">20sp</item>
         <item name="android:background">@drawable/textarea</item>
         <item name=" android:gravity">center</item>
+        <item name="android:fontFamily">@font/keepcalm_medium</item>
     </style>
 
     <style name="scoreTextViewStyle" parent="textViewStyle">
-        <item name="android:text" >@string/welcome_text</item>
+
     </style>
 
     <style name="quizTextViewStyle" parent="textViewStyle">
-        <item name="android:textStyle">bold</item>
+     <!--   <item name="android:textStyle">bold</item> -->
         <item name="android:textSize">28sp</item>
     </style>
 

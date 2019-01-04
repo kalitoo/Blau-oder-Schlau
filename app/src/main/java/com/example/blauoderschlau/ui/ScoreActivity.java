@@ -66,8 +66,10 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
         scoreTextView.setText("HERLZICHEN GLÜCKWUNSCH!"+"\nDu hast " + preComma
                 + "." + postComma + " Promille.");
 
+        //3 permill as maximun
         final double percentage = (100 * perMill)/3;
 
+        //new thread so UI does not freeze
          new Thread(new Runnable()
          {
              @Override
@@ -77,6 +79,8 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
                  {
                      prograssBarStatus++;
                      android.os.SystemClock.sleep(20);
+
+                     //communicating back with UI
                      handler.post(new Runnable()
                      {
                          @Override

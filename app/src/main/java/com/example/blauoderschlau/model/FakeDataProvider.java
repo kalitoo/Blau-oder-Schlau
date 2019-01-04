@@ -21,6 +21,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("2", true),
                 new Answer("3", false)};
         QuestionUnit questionUnit0 = new QuestionUnit(q0, ao0);
+
         String q1 = "Wie heißt die Mutter von Niki Lauda?";
         Answer[] ao1 = new Answer[]{
                 new Answer("Sebastian Vettel", false),
@@ -28,6 +29,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Toto Wolff", false),
                 new Answer("Steve Jobs", false)};
         QuestionUnit questionUnit1 = new QuestionUnit(q1, ao1);
+
         String q2 = "Klicke auf Deutschland";
         Answer[] ao2 = new Answer[]{
                 new Answer("Deutschland", true),
@@ -35,6 +37,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Ich bin nicht betrunken", false),
                 new Answer("Bayern", false)};
         QuestionUnit questionUnit2 = new QuestionUnit(q2, ao2);
+
         String q3 = "Klicke auf Deutschland";
         Answer[] ao3 = new Answer[]{
                 new Answer("Duetschland", false),
@@ -42,6 +45,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Deutschalnd", false),
                 new Answer("Deutschland", true)};
         QuestionUnit questionUnit3 = new QuestionUnit(q3, ao3);
+
         String q4 = "Wähle die Schaltfläche mit dem Text \"oben rechts\"";
         Answer[] ao4 = new Answer[]{
                 new Answer("oben rechts", true),
@@ -49,6 +53,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("oben links", false),
                 new Answer("unten rechts", false)};
         QuestionUnit questionUnit4 = new QuestionUnit(q4, ao4);
+
         String q5 = "Wie viele Wörter beinhaltet diese Frage?";
         Answer[] ao5 = new Answer[]{
                 new Answer("4", false),
@@ -56,6 +61,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("6", true),
                 new Answer("7", false)};
         QuestionUnit questionUnit5 = new QuestionUnit(q5, ao5);
+
         String q6 = "Wie viele Plus-Zeichen siehst du?\n++++++";
         Answer[] ao6 = new Answer[]{
                 new Answer("6", true),
@@ -63,6 +69,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("8", false),
                 new Answer("9", false)};
         QuestionUnit questionUnit6 = new QuestionUnit(q6, ao6);
+
         String q7 = "Wo zeigt die Mehrheit der Pfeile nach rechts?";
         Answer[] ao7 = new Answer[]{
                 new Answer(">><", true),
@@ -70,6 +77,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("><<", false),
                 new Answer("AfD", false)};
         QuestionUnit questionUnit7 = new QuestionUnit(q7, ao7);
+
         String q8 = "Wie lustig fandest du die letzte Frage?";
         Answer[] ao8 = new Answer[]{
                 new Answer("Allerhöchstens Schenkelklopfer", false),
@@ -77,6 +85,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Sehr Bein", false),
                 new Answer("Höchst amüsant", true)};
         QuestionUnit questionUnit8 = new QuestionUnit(q8, ao8);
+
         String q9 = "Wie viel Sterne würdest du dieser App geben?";
         Answer[] ao9 = new Answer[]{
                 new Answer("Einen", false),
@@ -84,6 +93,7 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Drei", false),
                 new Answer("Fünf", true)};
         QuestionUnit questionUnit9 = new QuestionUnit(q9, ao9);
+
         String q10 = "Was ist aus medizinischer Sicht kein Affe?";
         Answer[] ao10 = new Answer[]{
                 new Answer("Orang-Utan", false),
@@ -91,13 +101,15 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
                 new Answer("Kapuzineräffchen", false),
                 new Answer("Oliver Kahn", true)};
         QuestionUnit questionUnit10 = new QuestionUnit(q10, ao10);
+
         String q11 = "Wer sollte sich noch weitere Fragen ausdenken?";
         Answer[] ao11 = new Answer[]{
                 new Answer("Jan und Jonas", false),
                 new Answer("Jonathan und Jonas", false),
-                new Answer("nur Jonas", false),
-                new Answer("Jan und Jonathan", true)};
+                new Answer("nur Jonas", true),
+                new Answer("Jan und Jonathan", false)};
         QuestionUnit questionUnit11 = new QuestionUnit(q11, ao11);
+
         questionUnits.add(questionUnit0);
         questionUnits.add(questionUnit1);
         questionUnits.add(questionUnit2);
@@ -113,7 +125,10 @@ public class FakeDataProvider implements DatabaseManagerContract.Model {
 
 
         for (int i = 0; i < 50; i++) {
-            gameHistory.add(new Game(i));
+            Game game = new Game();
+            game.setPerMill(i);
+            game.setDate();
+            gameHistory.add(game);
         }
     }
 

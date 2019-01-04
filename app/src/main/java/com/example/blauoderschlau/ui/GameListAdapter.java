@@ -41,7 +41,7 @@ public class GameListAdapter extends ArrayAdapter<Game> {
         }
         Game game = getItem(position);
         GameViewHolder viewHolder = (GameViewHolder) rowView.getTag();
-        viewHolder.gameDateView.setText(game.getDate().toString());
+        viewHolder.gameDateView.setText(game.getDateAsString());
         viewHolder.gameScoreView.setText(Double.toString(game.getPerMill()));
         viewHolder.gameIconView.setImageResource(R.drawable.ic_atom);
         return rowView;
