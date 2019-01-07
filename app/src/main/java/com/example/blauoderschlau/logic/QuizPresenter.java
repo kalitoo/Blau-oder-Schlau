@@ -1,11 +1,12 @@
 package com.example.blauoderschlau.logic;
 
+import android.content.Context;
 import android.os.Handler;
 
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.QuizContract;
-import com.example.blauoderschlau.model.FakeDataProvider;
-import com.example.blauoderschlau.model.Game;
+import com.example.blauoderschlau.database.BosDatabaseHelper;
+import com.example.blauoderschlau.database.MyDB;
 import com.example.blauoderschlau.model.QuestionResult;
 import com.example.blauoderschlau.model.QuestionUnit;
 
@@ -29,9 +30,12 @@ public class QuizPresenter implements QuizContract.Presenter {
     private long questionStartTimeMillis;
     private boolean answerClicked;
 
-    public QuizPresenter(QuizContract.View view) {
+    public QuizPresenter(QuizContract.View view, Context context) {
         this.view = view;
-        this.model = DatabaseManagerContract.dataSource;
+
+        //this.model = DatabaseManagerContract.dataSource;
+        //this.model = BosDatabaseHelper.getInstance(context);
+        this.model = MyDB.getInstance(context);
         questionUnitBundle = model.loadQuestionBundle(0, 10);
         regenerateRandomHashMap();
         if (questionUnitBundle.isEmpty()) {
@@ -39,6 +43,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         } else {
             showQuestion();
         }
+
     }
 
     @Override
@@ -86,6 +91,7 @@ public class QuizPresenter implements QuizContract.Presenter {
             }
         }, 1000);
     }
+
 
     @Override
     public void aborted() {

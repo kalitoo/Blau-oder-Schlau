@@ -1,8 +1,12 @@
 package com.example.blauoderschlau.logic;
 
 
+import android.content.Context;
+
 import com.example.blauoderschlau.contracts.DatabaseManagerContract;
 import com.example.blauoderschlau.contracts.ScoreContract;
+import com.example.blauoderschlau.database.BosDatabaseHelper;
+import com.example.blauoderschlau.database.MyDB;
 import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionResult;
 
@@ -17,9 +21,11 @@ public class ScorePresenter implements ScoreContract.Presenter {
     private static final int MAX_MS = 10000;
     private static final double MAX_POSSIBLE_PER_MILL = 3.;
 
-    public ScorePresenter(ScoreContract.View view){
+    public ScorePresenter(ScoreContract.View view, Context context){
         this.view = view;
-        this.model = DatabaseManagerContract.dataSource;
+
+
+        model = MyDB.getInstance(context);
     }
 
     @Override

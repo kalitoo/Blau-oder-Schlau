@@ -1,4 +1,4 @@
-package com.example.blauoderschlau.ui;
+package com.example.blauoderschlau.database;
 
 import android.content.Context;
 import android.view.LayoutInflater;

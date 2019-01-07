@@ -41,7 +41,7 @@ public class QuizActivity extends AppCompatActivity implements QuizContract.View
         ButterKnife.bind(this);
 
         // important: call this only after butterknife binding or view elements will be null
-        presenter = new QuizPresenter(this);
+        presenter = new QuizPresenter(this,getApplicationContext());
 
         buttonA.setOnClickListener(new View.OnClickListener() {
             @Override

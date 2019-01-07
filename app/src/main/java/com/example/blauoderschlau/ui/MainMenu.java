@@ -1,7 +1,6 @@
 package com.example.blauoderschlau.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.widget.TextView;
 
 import com.example.blauoderschlau.R;
 import com.example.blauoderschlau.contracts.MainMenuContract;
+import com.example.blauoderschlau.database.GameListAdapter;
+import com.example.blauoderschlau.database.MyDB;
 import com.example.blauoderschlau.logic.MainMenuPresenter;
 import com.example.blauoderschlau.model.Game;
 
@@ -43,7 +44,7 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
 
-        presenter = new MainMenuPresenter(this);
+        presenter = new MainMenuPresenter(this,getApplicationContext());
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,14 @@ public class MainMenu extends AppCompatActivity implements MainMenuContract.View
 
         presenter.init();
 
-        ListAdapter gameListAdapter = new GameListAdapter(this, this.gameHistory);
+
+
+        //final Cursor cursor = MyDB.getInstance(getApplicationContext()).databaseReadable.query("history",new String[]{"permill","date"},null,null,null,null,null);
+        //ListAdapter historyListAdapter =  new GameHistoryCursorAdapter(getApplicationContext(),cursor);
+
+        List<Game> games = MyDB.getInstance(getApplicationContext()).loadAllGamesFromHistory();
+        ListAdapter gameListAdapter = new GameListAdapter(this, games);
+
         scoreHistory.setAdapter(gameListAdapter);
     }
 

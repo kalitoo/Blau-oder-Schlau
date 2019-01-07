@@ -1,6 +1,5 @@
 package com.example.blauoderschlau.contracts;
 
-import com.example.blauoderschlau.model.FakeDataProvider;
 import com.example.blauoderschlau.model.Game;
 import com.example.blauoderschlau.model.QuestionUnit;
 
@@ -8,7 +7,8 @@ import java.util.List;
 
 public interface DatabaseManagerContract {
     /** defines instance of data source, model implementation must be a singleton */
-    DatabaseManagerContract.Model dataSource = FakeDataProvider.getInstance();
+
+
 
     interface Model {
         /** loads specific game from history and return it */

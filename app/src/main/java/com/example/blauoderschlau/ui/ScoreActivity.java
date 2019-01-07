@@ -42,7 +42,7 @@ public class ScoreActivity extends AppCompatActivity implements ScoreContract.Vi
         setContentView(R.layout.activity_score);
         ButterKnife.bind(this);
 
-        presenter = new ScorePresenter(this);
+        presenter = new ScorePresenter(this,getApplicationContext());
 
         scoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
